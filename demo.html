@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box > div {
+            width: 20px;
+            height: 20px;
+            background-color: #f00;
+            margin: 0 10px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            opacity: 0;
+        }
+
+        .box.tran > div {
+            animation: trans 1s .2s linear forwards;
+        }
+
+        @keyframes trans {
+            70% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .box.tran > div:nth-child(2) {
+            animation-delay: .3s;
+        }
+
+        .box.tran > div:nth-child(3) {
+            animation-delay: .4s;
+        }
+
+        .box.tran > div:nth-child(4) {
+            animation-delay: .5s;
+        }
+    </style>
+</head>
+<body>
+<div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</div>
+<div class="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</div>
+<div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="ryh.js"></script>
+<script>
+   ryh.moveTo(".box > div:nth-of-type(1)",{opacity: 1,transition: "1s"});
+   ryh.moveTo(".box > div:nth-of-type(2)",{opacity: 1,transition: "1s 2s"});
+   ryh.moveTo(".box > div:nth-of-type(3)",{opacity: 1,background:"#000",transition: "1s 3s"});
+   ryh.moveTo(".box > div:nth-of-type(3)",function(){});
+//    ryh.moveTo(".box > div:nth-of-type(3)",[]);
+//    ryh.moveTo(".box > div:nth-of-type(3)",{});
+    // ryh.moveTo(".box > div:nth-of-type(4)",{opacity: 1,transition: "1s 4s"});
+//    ryh.moveTo(".box > div:nth-of-type(4)",function(){});
+</script>;
+</body>
+</html>
