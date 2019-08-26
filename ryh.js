@@ -23,27 +23,48 @@
                     (type === "string" ? $(e).html(res) : _this.throw("Incorrect input parameter type")));
         })
     };
+    // 图片宽高自适应(以短边100%为准)
+    ryh.prototype.imgAuto = function (e, obj) {
+    };
     // 瀑布流
-    ryh.prototype.waterfall = function (e) {
-        
+    ryh.prototype.waterfall = function (e, obj) {
+        // obj(object)支持参数:
+        var option = {
+            itemEle: "div",  //瀑布流子元素
+            spacingWidth: 2,  //距离左右元素宽度
+            spacingHieght: 4,  //距离下方元素高度
+            colCount: 3,  //一行几列
+            minHieght: "260",   //随机高度最小值
+            maxHieght: "290"   //随机高度最大数
+        }, topList = [], heightList = [];
+        $.extend(option, obj);
+        $(e).css("position") == "static" && $(e).css("position", "relative")
+        $(e).children(option.itemEle).css({ "width": $(e).width() / option.colCount - option.spacingWidth * 2, "position": "absolute" });
+        $.each($(e).children(option.itemEle), function (index, item) {
+            heightList.push(Math.round(Math.random() * (option.maxHieght - option.minHieght) + Number(option.minHieght)));
+            topList.length <= option.colCount - 1 ? topList.push(0) : topList.push(topList[index - option.colCount] + heightList[index - option.colCount] + Number(option.spacingHieght));
+            $(item).css({ "top": topList[index], "height": heightList[index], "left": option.spacingWidth + (option.colCount * option.spacingWidth * 2 + $(e).width() / option.colCount - option.colCount * option.spacingWidth * 2) * (index % option.colCount) })
+        })
     };
     // 图片懒加载
     ryh.prototype.lazyload = function (e, obj) {
         // obj(object)支持参数:
         var option = {
-            event: '',  //触发事件,不传为滚动加载,click时点击图片加载
-            top: '',  //距离顶部多久时加载图片,滚动加载时生效,可以为负数(单位px)
+            event: "",  //触发事件,不传为滚动加载,click时点击图片加载
+            top: "",  //距离顶部多久时加载图片,滚动加载时生效,可以为负数(单位px)
             time: 0,  //触发事件后延迟多久加载图片(单位ms)
-            lazyImg: 'https://github.com/copyWith/photoGallery/blob/master/no-img.jpg?raw=true'  //图片未加载时显示的图片地址
+            lazyImg: "https://github.com/copyWith/photoGallery/blob/master/no-img.jpg?raw=true"  //图片未加载时显示的图片地址
         }, _this;
         $.extend(option, obj);
         $(e).attr("src", option.lazyImg);
         option.event == "click" ?
-            $(e).on("click", function () { _this = $(this), setTimeout(function () { _this.attr("src", _this.data("lazy")) }, option.time); })
-            : $(that).on("scroll", function () {
+            $(e).on("click", function () { _this = $(this), setTimeout(function () { _this.attr("src", _this.data("lazy")) }, option.time); }) :
+            $(that).on("scroll", function () {
                 $(e).each(function () {
-                    (function (_this) { $(that).scrollTop() + $(that).height() >= (option.top?_this.offset().top - option.top:_this.offset().top) && 
-                        setTimeout(function () { _this.attr("src", _this.data("lazy")) }, option.time) })($(this));
+                    (function (_this) {
+                        $(that).scrollTop() + $(that).height() >= (option.top ? _this.offset().top - option.top : _this.offset().top) &&
+                            setTimeout(function () { _this.attr("src", _this.data("lazy")) }, option.time)
+                    })($(this));
                 })
             })
     };

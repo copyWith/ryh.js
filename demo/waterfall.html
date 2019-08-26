@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        .box>div {
+            box-sizing: border-box;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+        <div>13</div>
+        <div>14</div>
+        <div>15</div>
+        <div>16</div>
+        <div>17</div>
+        <div>18</div>
+        <div>19</div>
+        <div>20</div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../ryh.js"></script>
+    <script>
+        ryh.waterfall(".box", {
+            itemEle: "div",  //瀑布流子元素
+            spacingWidth: 2,  //距离左右元素宽度
+            spacingHieght: 4,  //距离下方元素高度
+            colCount: 3,  //一行几列
+            minHieght: "260",   //随机高度最小值
+            maxHieght: "290"   //随机高度最大数
+        })
+    </script>
+</body>
+
+</html>
