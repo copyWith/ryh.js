@@ -24,7 +24,37 @@
         })
     };
     // 图片宽高自适应(以短边100%为准)
-    ryh.prototype.imgAuto = function (e, obj) {
+    ryh.prototype.imgAuto = function (e) {
+        var w = { width: "auto", height: "100%", position: "absolute", top: "0", left: "-50%" },  //宽度大于高度
+            h = { width: "100%", height: "auto", position: "absolute", top: "-50%", left: "0" },  //高度大于宽度
+            b = { width: "100%", height: "100%", position: "absolute", top: "0", left: "0" };  //宽高相等
+        $(e).each(function (index, item) {
+            var image = new Image();
+            image.src = $(item).attr("src");
+            $(item).parent().css("position") == "static" && $(item).parent().css("position", "relative");
+            image.complete ? (image.width == image.height ? $(item).css(b) : image.width > image.height ? $(item).css(w) : $(item).css(h)) :
+                image.onload = function () { image.width == image.height ? $(item).css(b) : image.width > image.height ? $(item).css(w) : $(item).css(h) };
+        })
+    };
+    // 跑马灯效果(竖向无限滚动)
+    ryh.prototype.horselight = function (e, obj) {
+        // obj(object)支持参数:
+        var option = {
+            itemEle: "div",  //跑马灯内容外层元素
+            speed: 50,  //滚动速度(单位ms)
+            delayed: 1000,  //延时滚动(单位ms)
+            distance: 1  //滚动距离(单位px)
+        }, timer;
+        $.extend(option, obj);
+        $(e).children(option.itemEle).clone(true).appendTo($(e));
+        timer = setTimeout(function () {
+            clearTimeout(timer);
+            timer = setInterval(auto, option.speed);
+        }, option.delayed)
+        function auto() {
+            $(e).scrollTop() > $(e).children(option.itemEle).height() ? $(e).scrollTop(1) : $(e).scrollTop($(e).scrollTop() + Number(option.distance));
+            $(e).scrollTop() % $(e).height() == 0 && (clearInterval(timer), setTimeout(function () { timer = setInterval(auto, option.speed) }, option.delayed));
+        }
     };
     // 瀑布流
     ryh.prototype.waterfall = function (e, obj) {

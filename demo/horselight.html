@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            margin: 50px auto;
+            width: 100px;
+            height: 20px;
+            overflow: hidden;
+            border: 2px solid #000;
+        }
+
+        .box_inner div {
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="box_inner">
+            <div>滚动栏1</div>
+            <div>滚动栏2</div>
+            <div>滚动栏3</div>
+            <div>滚动栏4</div>
+            <div>滚动栏5</div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../ryh.js"></script>
+    <script>
+        ryh.horselight(".box", {
+            itemEle: ".box_inner",  //跑马灯内容外层元素
+            speed: 50,  //滚动速度(单位ms)
+            delayed: 1000,  //延时滚动(单位ms)
+            distance: 1  //滚动距离(单位px)
+        })
+    </script>
+</body>
+
+</html>

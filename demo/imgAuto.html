@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div><img class="imgAuto" src="https://github.com/copyWith/photoGallery/blob/master/Exa_100%C3%97200.png?raw=true" alt=""></div>
+        <div><img class="imgAuto" src="https://github.com/copyWith/photoGallery/blob/master/Exa_200%C3%97100.png?raw=true" alt=""></div>
+        <div><img class="imgAuto" src="https://github.com/copyWith/photoGallery/blob/master/Exa_100%C3%97100.png?raw=true" alt=""></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../ryh.js"></script>
+    <script>
+        var arr = [
+            'https://github.com/copyWith/photoGallery/blob/master/Exa_100%C3%97200.png?raw=true',
+            'https://github.com/copyWith/photoGallery/blob/master/Exa_200%C3%97100.png?raw=true',
+            'https://github.com/copyWith/photoGallery/blob/master/Exa_100%C3%97100.png?raw=true'
+        ]
+        var str = ""
+        for (i in arr) {
+            str += '<div><img class="imgAuto" src=' + arr[i] + '/></div>'
+        }
+        $(".box").html(str);
+        ryh.imgAuto(".imgAuto")
+    </script>
+</body>
+
+</html>
